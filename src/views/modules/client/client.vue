@@ -7,7 +7,9 @@
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
         <el-button v-if="isAuth('fts:client:save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        <el-button v-if="isAuth('fts:client:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+        <el-button v-if="isAuth('fts:client:delete')" type="danger" @click="deleteHandle()"
+                   :disabled="dataListSelections.length <= 0">批量删除
+        </el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -41,6 +43,12 @@
         label="连接时的密钥">
       </el-table-column>
       <el-table-column
+        prop="securityKey"
+        header-align="center"
+        align="center"
+        label="颁发密钥">
+      </el-table-column>
+      <el-table-column
         prop="clientType"
         header-align="center"
         align="center"
@@ -71,6 +79,12 @@
         label="创建时间">
       </el-table-column>
       <el-table-column
+        prop="memo"
+        header-align="center"
+        align="center"
+        label="备注">
+      </el-table-column>
+      <el-table-column
         fixed="right"
         header-align="center"
         align="center"
@@ -98,6 +112,7 @@
 
 <script>
   import AddOrUpdate from './client-add-or-update'
+
   export default {
     data () {
       return {

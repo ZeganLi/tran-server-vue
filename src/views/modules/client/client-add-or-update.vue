@@ -10,6 +10,9 @@
     <el-form-item label="连接时的密钥" prop="clientKey">
       <el-input v-model="dataForm.clientKey" placeholder="连接时的密钥"></el-input>
     </el-form-item>
+    <el-form-item label="颁发密钥" prop="securityKey">
+      <el-input v-model="dataForm.securityKey" placeholder="安全密钥"></el-input>
+    </el-form-item>
     <el-form-item label="客户端的类型" prop="clientType">
       <el-input v-model="dataForm.clientType" placeholder="客户端的类型"></el-input>
     </el-form-item>
@@ -24,6 +27,9 @@
     </el-form-item>
     <el-form-item label="创建时间" prop="createDate">
       <el-input v-model="dataForm.createDate" placeholder="创建时间"></el-input>
+    </el-form-item>
+    <el-form-item label="备注" prop="memo">
+      <el-input v-model="dataForm.memo" placeholder="备注"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -46,7 +52,9 @@
           clientStatus: '',
           clientVersion: '',
           clientStorageDir: '',
-          createDate: ''
+          createDate: '',
+          securityKey: '',
+          memo: ''
         },
         dataRule: {
           clientName: [
@@ -93,6 +101,8 @@
                 this.dataForm.clientVersion = data.client.clientVersion
                 this.dataForm.clientStorageDir = data.client.clientStorageDir
                 this.dataForm.createDate = data.client.createDate
+                this.dataForm.memo = data.client.memo
+                this.dataForm.securityKey = data.client.securityKey
               }
             })
           }
@@ -113,7 +123,9 @@
                 'clientStatus': this.dataForm.clientStatus,
                 'clientVersion': this.dataForm.clientVersion,
                 'clientStorageDir': this.dataForm.clientStorageDir,
-                'createDate': this.dataForm.createDate
+                'createDate': this.dataForm.createDate,
+                'memo': this.dataForm.memo,
+                'securityKey': this.dataForm.securityKey
               })
             }).then(({data}) => {
               if (data && data.code === 0) {
